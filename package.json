@@ -1,9 +1,33 @@
 {
   "name": "nova-cli-test",
   "version": "0.0.1",
+  "description": "A command-line interface built with Ink",
+  "keywords": [
+    "cli",
+    "ink",
+    "react",
+    "terminal",
+    "command-line"
+  ],
+  "homepage": "https://github.com/hotmanxp/ink-app-hello#readme",
+  "bugs": {
+    "url": "https://github.com/hotmanxp/ink-app-hello/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hotmanxp/ink-app-hello.git"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Ethan Liang",
+    "email": "ethan@example.com",
+    "url": "https://github.com/hotmanxp"
+  },
   "bin": "dist/cli.js",
   "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "engines": {
     "node": ">=16"
   },
@@ -13,7 +37,8 @@
     "test": "prettier --check . && xo && ava",
     "format": "prettier --write .",
     "start": "node dist/cli.js",
-    "dev:bun": "bun source/cli.tsx"
+    "dev:bun": "bun source/cli.tsx",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",
