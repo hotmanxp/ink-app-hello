@@ -1,12 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import os from 'os'
 import type { User } from '../types.js'
-
-// 获取当前文件的目录路径
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 // 数据文件路径
 const dataDir = path.join(os.homedir(), '.nova-ai')
@@ -84,7 +79,7 @@ export const updateUser = async (
     if (!existingUser) {
       return null
     }
-    
+
     const updatedUser: User = {
       name: userData.name !== undefined ? userData.name : existingUser.name,
       email: userData.email !== undefined ? userData.email : existingUser.email,
