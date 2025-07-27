@@ -1,6 +1,6 @@
 {
-  "name": "my-ink-cli-01",
-  "version": "0.0.0",
+  "name": "nova-cli-test",
+  "version": "0.0.1",
   "license": "MIT",
   "bin": "dist/cli.js",
   "type": "module",
@@ -16,7 +16,8 @@
     "dev:bun": "bun source/cli.tsx"
   },
   "files": [
-    "dist"
+    "dist",
+    "source"
   ],
   "dependencies": {
     "@types/fs-extra": "^11.0.4",
