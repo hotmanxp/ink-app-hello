@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import React from 'react';
-import {render} from 'ink';
-import meow from 'meow';
-import App from './app.js';
+import React from 'react'
+import { render } from 'ink'
+import meow from 'meow'
+import App from './app.js'
 
 meow(
-	`
+  `
 	Usage
 	  $ my-ink-cli-01
 
@@ -20,9 +20,9 @@ meow(
 	Examples
 	  $ my-ink-cli-01
 `,
-	{
-		importMeta: import.meta,
-	}
-);
+  {
+    importMeta: import.meta,
+  }
+)
 
-render(<App />);
+render(<App />)

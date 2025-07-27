@@ -1,80 +1,79 @@
-import React from 'react';
-import { Box, Text } from 'ink';
-import SelectInput from 'ink-select-input';
-import { Route } from '../types.js';
+import React from 'react'
+import { Box, Text } from 'ink'
+import SelectInput from 'ink-select-input'
+import { Route } from '../types.js'
 
 interface MenuItem {
-	label: string;
-	value: Route | 'exit';
+  label: string
+  value: Route | 'exit'
 }
 
 interface HomeScreenProps {
-	onRouteChange: (route: Route) => void;
+  onRouteChange: (route: Route) => void
 }
 
 const menuItems: MenuItem[] = [
-	{ label: '填写新用户信息', value: 'form' },
-	{ label: '查看和编辑用户信息', value: 'users' },
-	{ label: '退出程序', value: 'exit' }
-];
+  { label: '填写新用户信息', value: 'form' },
+  { label: '查看和编辑用户信息', value: 'users' },
+  { label: '退出程序', value: 'exit' },
+]
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
-	const handleSelect = (item: MenuItem) => {
-		if (item.value === 'exit') {
-			process.exit(0);
-		} else {
-			onRouteChange(item.value);
-		}
-	};
+  const handleSelect = (item: MenuItem) => {
+    if (item.value === 'exit') {
+      process.exit(0)
+    } else {
+      onRouteChange(item.value)
+    }
+  }
 
-	return (
-		<Box flexDirection="column" padding={2} alignItems="center">
-			<Box flexDirection="column" alignItems="center" marginBottom={2}>
-				<Text color="cyan" bold>
-					 ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗ 
-				</Text>
-				<Text color="blue" bold>
-					 ████╗  ██║██╔═══██╗██║   ██║██╔══██╗
-				</Text>
-				<Text color="magenta" bold>
-					 ██╔██╗ ██║██║   ██║██║   ██║███████║
-				</Text>
-				<Text color="green" bold>
-					 ██║╚██╗██║██║   ██║╚██╗ ██╔╝██╔══██║
-				</Text>
-				<Text color="yellow" bold>
-					 ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║
-				</Text>
-				<Text color="red" bold>
-					 ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝
-				</Text>
-			</Box>
-			
-			<Text color="white" italic dimColor>
-				Interactive User Management System
-			</Text>
-			
-			<Box marginTop={3} marginBottom={2}>
-				<Text bold color="cyan">用户管理系统</Text>
-			</Box>
-			
-			<Box marginBottom={2}>
-				<Text dimColor>请选择操作:</Text>
-			</Box>
-			
-			<SelectInput 
-				items={menuItems}
-				onSelect={handleSelect}
-			/>
-			
-			<Box marginTop={3} flexDirection="column">
-				<Text dimColor>导航说明:</Text>
-				<Text dimColor>• ↑/↓: 选择选项</Text>
-				<Text dimColor>• Enter: 确认选择</Text>
-				<Text dimColor>• Ctrl+C: 退出程序</Text>
-			</Box>
-		</Box>
-	);
-};
+  return (
+    <Box flexDirection="column" padding={2} alignItems="center">
+      <Box flexDirection="column" alignItems="center" marginBottom={2}>
+        <Text color="cyan" bold>
+          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗
+        </Text>
+        <Text color="blue" bold>
+          ████╗ ██║██╔═══██╗██║ ██║██╔══██╗
+        </Text>
+        <Text color="magenta" bold>
+          ██╔██╗ ██║██║ ██║██║ ██║███████║
+        </Text>
+        <Text color="green" bold>
+          ██║╚██╗██║██║ ██║╚██╗ ██╔╝██╔══██║
+        </Text>
+        <Text color="yellow" bold>
+          ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║ ██║
+        </Text>
+        <Text color="red" bold>
+          ╚═╝ ╚═══╝ ╚═════╝ ╚═══╝ ╚═╝ ╚═╝
+        </Text>
+      </Box>
 
-export default HomeScreen;
+      <Text color="white" italic dimColor>
+        Interactive User Management System
+      </Text>
+
+      <Box marginTop={3} marginBottom={2}>
+        <Text bold color="cyan">
+          用户管理系统
+        </Text>
+      </Box>
+
+      <Box marginBottom={2}>
+        <Text dimColor>请选择操作:</Text>
+      </Box>
+
+      <SelectInput items={menuItems} onSelect={handleSelect} />
+
+      <Box marginTop={3} flexDirection="column">
+        <Text dimColor>导航说明:</Text>
+        <Text dimColor>• ↑/↓: 选择选项</Text>
+        <Text dimColor>• Enter: 确认选择</Text>
+        <Text dimColor>• Ctrl+C: 退出程序</Text>
+      </Box>
+    </Box>
+  )
+}
+
+export default HomeScreen
