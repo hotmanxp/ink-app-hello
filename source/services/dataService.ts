@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import os from 'os'
 import type { User } from '../types.js'
 
 // 获取当前文件的目录路径
@@ -8,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // 数据文件路径
-const dataDir = path.join(__dirname, '..', '..', 'data')
+const dataDir = path.join(os.homedir(), '.nova-ai')
 const dataFile = path.join(dataDir, 'users.json')
 
 /**
