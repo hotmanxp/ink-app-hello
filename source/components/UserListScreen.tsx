@@ -35,7 +35,7 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
   }, [])
 
   // 添加ESC键监听功能
-  useInput((input, key) => {
+  useInput((_, key) => {
     if (key.escape) {
       onRouteChange('home')
     }

@@ -80,6 +80,10 @@ export const updateUser = async (
 
     // 确保不会丢失必需的字段
     const existingUser = users[userIndex]
+    if (!existingUser) {
+      return null
+    }
+    
     const updatedUser: User = {
       name: userData.name !== undefined ? userData.name : existingUser.name,
       email: userData.email !== undefined ? userData.email : existingUser.email,

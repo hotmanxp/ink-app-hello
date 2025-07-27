@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useInput, useApp, Box, Text } from 'ink'
+import { useInput, Box, Text } from 'ink'
 import Spinner from 'ink-spinner'
 import HomeScreen from './components/HomeScreen.js'
-import MenuScreen from './components/MenuScreen.js'
+
 import MainForm from './components/MainForm.js'
 import UserListScreen from './components/UserListScreen.js'
 import UserEditScreen from './components/UserEditScreen.js'
-import { FormData, FormErrors, SelectItem, Route, User } from './types.js'
+import { FormData, FormErrors, SelectItem, Route } from './types.js'
 import { saveUser } from './services/dataService.js'
 
 /**
  * 主应用程序组件
  */
 export default function App() {
-  // Ink hooks
-  const { exit } = useApp()
-
   // 路由状态
   const [route, setRoute] = useState<Route>('home')
   const [routeData, setRouteData] = useState<any>(null)
@@ -165,14 +162,6 @@ export default function App() {
     }, 2000)
   }
 
-  /**
-   * 获取当前字段
-   */
-  const getCurrentField = (): keyof FormData | null => {
-    const fields: Array<keyof FormData> = ['name', 'email', 'age', 'department', 'experience']
-    return fields[step] || null
-  }
-
   // 首页自动跳转
   useEffect(() => {
     if (route === 'home') {
@@ -188,6 +177,12 @@ export default function App() {
 
   // 键盘输入处理
   useInput((_input, key) => {
+    // 在所有页面支持ESC键返回主菜单（除了已经在主菜单时）
+    if (key.escape && route !== 'home') {
+      handleRouteChange('home')
+      return
+    }
+
     // 首页任意键跳转
     if (route === 'home') {
       // 不再需要自动跳转，因为首页现在包含菜单
@@ -209,11 +204,6 @@ export default function App() {
       } else if (key.escape) {
         handleRouteChange('home')
       }
-    }
-
-    // 在所有页面支持ESC键返回主菜单（除了已经在主菜单时）
-    if (key.escape && route !== 'home') {
-      handleRouteChange('home')
     }
 
     // 仅当处于表单页面时处理键盘事件，其他页面(如edit-user)让子组件自行处理

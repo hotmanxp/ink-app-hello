@@ -28,7 +28,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
   }
 
   // 添加ESC键监听功能
-  useInput((input, key) => {
+  useInput((_, key) => {
     if (key.escape) {
       process.exit(0)
     }

@@ -108,18 +108,18 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     setFocusedField(fields[nextIndex] as any)
   }
 
-  const moveToPrevField = (currentField: keyof typeof formData) => {
-    const fields: Array<keyof typeof formData> = [
-      'name',
-      'email',
-      'age',
-      'department',
-      'experience',
-    ]
-    const currentIndex = fields.indexOf(currentField)
-    const prevIndex = (currentIndex - 1 + fields.length) % fields.length
-    setFocusedField(fields[prevIndex] as any)
-  }
+  // const moveToPrevField = (currentField: keyof typeof formData) => {
+  //   const fields: Array<keyof typeof formData> = [
+  //     'name',
+  //     'email',
+  //     'age',
+  //     'department',
+  //     'experience',
+  //   ]
+  //   const currentIndex = fields.indexOf(currentField)
+  //   const prevIndex = (currentIndex - 1 + fields.length) % fields.length
+  //   setFocusedField(fields[prevIndex] as any)
+  // }
 
   const handleSubmit = async () => {
     // 验证所有字段
@@ -156,14 +156,6 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     }
   }
 
-  const handleSaveClick = () => {
-    handleSubmit()
-  }
-
-  const handleCancelClick = () => {
-    onRouteChange('users')
-  }
-
   // Find the correct initial index for department
   const departmentInitialIndex = departments.findIndex(d => d.value === formData.department)
   const validDepartmentInitialIndex = departmentInitialIndex >= 0 ? departmentInitialIndex : 0
@@ -173,7 +165,7 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
   const validExperienceInitialIndex = experienceInitialIndex >= 0 ? experienceInitialIndex : 0
 
   // Handle keyboard navigation
-  useInput((input, key) => {
+  useInput((_, key) => {
     // Handle Tab and Shift+Tab for field navigation
     if (key.tab) {
       if (key.shift) {
