@@ -68,7 +68,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
         <Box flexDirection="column">
           <Text color="yellow">请选择您的部门:</Text>
           <SelectInput
-            items={departments}
+            items={[...departments] as SelectItem[]}
             onSelect={(item: SelectItem) => onSelect('department', item)}
           />
           {errors.department && <Text color="red">{errors.department}</Text>}
@@ -80,7 +80,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
         <Box flexDirection="column">
           <Text color="yellow">请选择您的经验级别:</Text>
           <SelectInput
-            items={experienceLevels}
+            items={[...experienceLevels] as SelectItem[]}
             onSelect={(item: SelectItem) => onSelect('experience', item)}
           />
           {errors.experience && <Text color="red">{errors.experience}</Text>}
