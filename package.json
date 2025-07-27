@@ -9,10 +9,11 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsx watch source/cli.tsx",
-		"start": "node dist/cli.js",
+		"dev": "tsc --watch",
 		"test": "prettier --check . && xo && ava",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"start": "node dist/cli.js",
+		"dev:bun": "bun source/cli.tsx"
 	},
 	"files": [
 		"dist"
@@ -39,7 +40,6 @@
 		"ink-testing-library": "^3.0.0",
 		"prettier": "^2.8.7",
 		"ts-node": "^10.9.1",
-		"tsx": "^4.20.3",
 		"typescript": "^5.0.3",
 		"xo": "^0.53.1"
 	},
