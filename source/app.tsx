@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useInput, Box, Text } from 'ink'
+import { Box, Text, useInput } from 'ink'
 import Spinner from 'ink-spinner'
-import HomeScreen from './components/HomeScreen.js'
-
-import MainForm from './components/MainForm.js'
-import UserListScreen from './components/UserListScreen.js'
-import UserEditScreen from './components/UserEditScreen.js'
-import { FormData, FormErrors, SelectItem, Route } from './types.js'
-import { saveUser } from './services/dataService.js'
+import HomeScreen from './components/HomeScreen'
+import MainForm from './components/MainForm'
+import UserListScreen from './components/UserListScreen'
+import UserEditScreen from './components/UserEditScreen'
+import { FormData, FormErrors, SelectItem, Route } from './types'
+import { saveUser } from './services/dataService'
 
 /**
  * 主应用程序组件
@@ -175,42 +174,35 @@ export default function App() {
     }
   }, [route])
 
-  // 键盘输入处理
-  useInput((_input, key) => {
-    // 在所有页面支持ESC键返回主菜单（除了已经在主菜单时）
-    if (key.escape && route !== 'home') {
-      handleRouteChange('home')
-      return
-    }
+	// 键盘输入处理
+	useInput((_input: string, key: { return?: boolean; leftArrow?: boolean; backspace?: boolean; escape?: boolean }) => {
+		// 首页任意键跳转
+		if (route === 'home') {
+			// 不再需要自动跳转，因为首页现在包含菜单
+			return
+		}
 
-    // 首页任意键跳转
-    if (route === 'home') {
-      // 不再需要自动跳转，因为首页现在包含菜单
-      return
-    }
-
-    // 表单导航
-    if (route === 'form' && !isSubmitted) {
-      if (key.return) {
-        if (step < 4) {
-          handleNext()
-        } else if (step === 4) {
-          handleSubmit()
-        }
-      } else if (key.leftArrow || key.backspace) {
-        if (step > 0 && step < 4) {
-          handlePrevious()
-        }
-      } else if (key.escape) {
-        handleRouteChange('home')
-      }
-    }
-
-    // 仅当处于表单页面时处理键盘事件，其他页面(如edit-user)让子组件自行处理
-    if (route !== 'form') {
-      return
-    }
-  })
+		// 表单导航
+		if (route === 'form' && !isSubmitted) {
+			if (key.return) {
+				if (step < 4) {
+					handleNext()
+				} else if (step === 4) {
+					handleSubmit()
+				}
+			} else if (key.leftArrow || key.backspace) {
+				if (step > 0 && step < 4) {
+					handlePrevious()
+				}
+			} else if (key.escape) {
+				handleRouteChange('home')
+			}
+		}
+		// 仅当处于表单页面时处理键盘事件，其他页面(如edit-user)让子组件自行处理
+		if (route !== 'form') {
+			return
+		}
+	})
 
   // 渲染当前路由对应的组件
   switch (route) {

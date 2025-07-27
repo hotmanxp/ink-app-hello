@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, Text } from 'ink'
-import ProgressBar from './ProgressBar.js'
-import FormFields from './FormFields.js'
-import type { FormData, FormErrors, SelectItem } from '../types.js'
+import ProgressBar from './ProgressBar'
+import FormFields from './FormFields'
+import type { FormData, FormErrors, SelectItem } from '../types'
 
 interface MainFormProps {
   readonly step: number

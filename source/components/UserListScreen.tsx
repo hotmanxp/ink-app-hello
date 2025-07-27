@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Text, useInput } from 'ink'
 import SelectInput from 'ink-select-input'
-import type { User, Route } from '../types.js'
-import { readUsers, deleteUser } from '../services/dataService.js'
+import type { User, Route } from '../types'
+import { readUsers, deleteUser } from '../services/dataService'
 
 interface UserListScreenProps {
   readonly onRouteChange: (route: Route, data?: any) => void
@@ -34,10 +34,17 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
     void fetchUsers()
   }, [])
 
-  // 添加ESC键监听功能
-  useInput((_, key) => {
+  // 添加键盘事件监听
+  useInput((_: string, key: { escape?: boolean; return?: boolean }) => {
     if (key.escape) {
       onRouteChange('home')
+    }
+    
+    if (key.return && selectedUserId) {
+      const user = users.find(u => u.id === selectedUserId)
+      if (user) {
+        onRouteChange('edit-user', { user })
+      }
     }
   })
 

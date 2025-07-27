@@ -3,8 +3,8 @@ import { Box, Text, useInput } from 'ink'
 import Spinner from 'ink-spinner'
 import TextInput from 'ink-text-input'
 import SelectInput from 'ink-select-input'
-import { User, FormErrors, SelectItem } from '../types.js'
-import { updateUser } from '../services/dataService.js'
+import { User, FormErrors, SelectItem } from '../types'
+import { updateUser } from '../services/dataService'
 
 interface UserEditScreenProps {
   user: User
@@ -108,18 +108,18 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     setFocusedField(fields[nextIndex] as any)
   }
 
-  // const moveToPrevField = (currentField: keyof typeof formData) => {
-  //   const fields: Array<keyof typeof formData> = [
-  //     'name',
-  //     'email',
-  //     'age',
-  //     'department',
-  //     'experience',
-  //   ]
-  //   const currentIndex = fields.indexOf(currentField)
-  //   const prevIndex = (currentIndex - 1 + fields.length) % fields.length
-  //   setFocusedField(fields[prevIndex] as any)
-  // }
+  const moveToPrevField = (currentField: keyof typeof formData) => {
+    const fields: Array<keyof typeof formData> = [
+      'name',
+      'email',
+      'age',
+      'department',
+      'experience',
+    ]
+    const currentIndex = fields.indexOf(currentField)
+    const prevIndex = (currentIndex - 1 + fields.length) % fields.length
+    setFocusedField(fields[prevIndex] as any)
+  }
 
   const handleSubmit = async () => {
     // 验证所有字段
@@ -206,6 +206,28 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     if (key.escape) {
       onRouteChange('users')
       return
+    }
+  })
+
+  // 添加键盘事件监听
+  useInput((_: string, key: { escape?: boolean; return?: boolean; backspace?: boolean }) => {
+    if (key.escape) {
+      onRouteChange('users')
+    }
+    
+    // 处理表单提交
+    if (key.return && currentField) {
+      const error = validateField(currentField, formData[currentField])
+      if (!error) {
+        handleNext()
+      } else {
+        setErrors(prev => ({ ...prev, [currentField]: error }))
+      }
+    }
+    
+    // 处理返回上一步
+    if (key.backspace && currentField) {
+      handlePrevious()
     }
   })
 
