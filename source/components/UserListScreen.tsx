@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Text } from 'ink'
 import SelectInput from 'ink-select-input'
-import { User, Route } from '../types.js'
+import type { User, Route } from '../types.js'
 import { readUsers, deleteUser } from '../services/dataService.js'
 
 interface UserListScreenProps {
-  onRouteChange: (route: Route, data?: any) => void
+  readonly onRouteChange: (route: Route, data?: any) => void
 }
 
 interface UserMenuItem {
@@ -20,10 +20,9 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
   const [showUserActions, setShowUserActions] = useState(false)
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
-  const [deleteStatus, setDeleteStatus] = useState<{
-    success: boolean
-    message: string
-  } | null>(null)
+  const [deleteStatus, setDeleteStatus] = useState<{ success: boolean; message: string } | null>(
+    null
+  )
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -32,14 +31,14 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
       setLoading(false)
     }
 
-    fetchUsers()
+    void fetchUsers()
   }, [])
 
   const handleSelectUser = (item: UserMenuItem) => {
     // 处理删除确认
     if (deleteConfirmation && selectedUserId) {
       if (item.value === 'confirm-delete') {
-        handleDeleteUser(selectedUserId)
+        void handleDeleteUser(selectedUserId)
         return
       } else if (item.value === 'cancel-delete' || item.value === 'back-to-user-list') {
         setDeleteConfirmation(false)

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Box, Text } from 'ink'
-import { FormData, SelectItem } from '../types.js'
+import type { FormData, SelectItem } from '../types.js'
 
 interface SuccessScreenProps {
-  formData: FormData
-  departments: SelectItem[]
-  experienceLevels: SelectItem[]
+  readonly formData: Readonly<FormData>
+  readonly departments: readonly SelectItem[]
+  readonly experienceLevels: readonly SelectItem[]
 }
 
 const SuccessScreen: React.FC<SuccessScreenProps> = ({
@@ -13,19 +13,30 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
   departments,
   experienceLevels,
 }) => {
+  const departmentLabel =
+    departments.find(d => d.value === formData.department)?.label || formData.department
+  const experienceLabel =
+    experienceLevels.find(e => e.value === formData.experience)?.label || formData.experience
+
   return (
     <Box flexDirection="column" padding={2}>
-      <Text color="green" bold>
-        ✅ Form Submitted Successfully!
-      </Text>
-      <Box marginTop={1} flexDirection="column">
-        <Text>Name: {formData.name}</Text>
-        <Text>Email: {formData.email}</Text>
-        <Text>Age: {formData.age}</Text>
-        <Text>Department: {departments.find(d => d.value === formData.department)?.label}</Text>
-        <Text>
-          Experience: {experienceLevels.find(e => e.value === formData.experience)?.label}
-        </Text>
+      <Box marginBottom={1}>
+        <Text color="green">✅ 提交成功!</Text>
+      </Box>
+
+      <Box flexDirection="column" marginTop={1}>
+        <Text bold>用户信息预览:</Text>
+        <Box marginTop={1} flexDirection="column">
+          <Text>姓名: {formData.name}</Text>
+          <Text>邮箱: {formData.email}</Text>
+          <Text>年龄: {formData.age}</Text>
+          <Text>部门: {departmentLabel}</Text>
+          <Text>经验级别: {experienceLabel}</Text>
+        </Box>
+      </Box>
+
+      <Box marginTop={2}>
+        <Text dimColor>感谢您提交信息，3秒后将返回主菜单...</Text>
       </Box>
     </Box>
   )

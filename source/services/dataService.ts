@@ -1,7 +1,7 @@
-import fs from 'fs-extra'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { User } from '../types.js'
+import fs from 'node:fs-extra'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import type { User } from '../types.js'
 
 // 获取当前文件的目录路径
 const __filename = fileURLToPath(import.meta.url)
@@ -33,7 +33,7 @@ export const readUsers = async (): Promise<User[]> => {
 
     const data = await fs.readJson(dataFile)
     return Array.isArray(data) ? data : []
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error reading users:', error)
     return []
   }
@@ -56,7 +56,7 @@ export const saveUser = async (user: Omit<User, 'id' | 'createdAt'>): Promise<Us
     users.push(newUser)
     await fs.writeJson(dataFile, users, { spaces: 2 })
     return newUser
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error saving user:', error)
     return null
   }
@@ -93,7 +93,7 @@ export const updateUser = async (
     users[userIndex] = updatedUser
     await fs.writeJson(dataFile, users, { spaces: 2 })
     return updatedUser
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error updating user:', error)
     return null
   }
@@ -115,7 +115,7 @@ export const deleteUser = async (id: string): Promise<boolean> => {
 
     await fs.writeJson(dataFile, filteredUsers, { spaces: 2 })
     return true
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error deleting user:', error)
     return false
   }

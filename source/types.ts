@@ -1,4 +1,4 @@
-export interface FormData {
+export type FormData = {
   name: string
   email: string
   age: string
@@ -6,7 +6,7 @@ export interface FormData {
   experience: string
 }
 
-export interface FormErrors {
+export type FormErrors = {
   name?: string
   email?: string
   age?: string
@@ -14,12 +14,12 @@ export interface FormErrors {
   experience?: string
 }
 
-export interface SelectItem {
+export type SelectItem = {
   label: string
   value: string
 }
 
-export interface User extends FormData {
+export type User = FormData & {
   id: string
   createdAt: string
 }

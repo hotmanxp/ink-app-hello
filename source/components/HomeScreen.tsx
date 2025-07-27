@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Text } from 'ink'
 import SelectInput from 'ink-select-input'
-import { Route } from '../types.js'
+import type { Route } from '../types.js'
 
 interface MenuItem {
   label: string
@@ -9,7 +9,7 @@ interface MenuItem {
 }
 
 interface HomeScreenProps {
-  onRouteChange: (route: Route) => void
+  readonly onRouteChange: (route: Route) => void
 }
 
 const menuItems: MenuItem[] = [
@@ -19,7 +19,7 @@ const menuItems: MenuItem[] = [
 ]
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
-  const handleSelect = (item: MenuItem) => {
+  const handleSelect = (item: MenuItem): void => {
     if (item.value === 'exit') {
       process.exit(0)
     } else {
@@ -31,7 +31,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
     <Box flexDirection="column" padding={2} alignItems="center">
       <Box flexDirection="column" alignItems="center" marginBottom={2}>
         <Text color="cyan" bold>
-          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗
+          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗{' '}
         </Text>
         <Text color="blue" bold>
           ████╗ ██║██╔═══██╗██║ ██║██╔══██╗

@@ -2,16 +2,16 @@ import React from 'react'
 import { Box, Text } from 'ink'
 import ProgressBar from './ProgressBar.js'
 import FormFields from './FormFields.js'
-import { FormData, FormErrors, SelectItem } from '../types.js'
+import type { FormData, FormErrors, SelectItem } from '../types.js'
 
 interface MainFormProps {
-  step: number
-  formData: FormData
-  errors: FormErrors
-  departments: SelectItem[]
-  experienceLevels: SelectItem[]
-  onInputChange: (field: string, value: string) => void
-  onSelect: (field: string, item: SelectItem) => void
+  readonly step: number
+  readonly formData: Readonly<FormData>
+  readonly errors: Readonly<FormErrors>
+  readonly departments: readonly SelectItem[]
+  readonly experienceLevels: readonly SelectItem[]
+  readonly onInputChange: (field: string, value: string) => void
+  readonly onSelect: (field: string, item: SelectItem) => void
 }
 
 const MainForm: React.FC<MainFormProps> = ({
@@ -23,15 +23,6 @@ const MainForm: React.FC<MainFormProps> = ({
   onInputChange,
   onSelect,
 }) => {
-  // Convert the strongly typed functions to loosely typed ones for compatibility
-  const handleInputChange = (field: string, value: string) => {
-    onInputChange(field as keyof FormData, value)
-  }
-
-  const handleSelect = (field: string, item: SelectItem) => {
-    onSelect(field as keyof FormData, item)
-  }
-
   return (
     <Box flexDirection="column" padding={2}>
       <Box>
@@ -52,16 +43,16 @@ const MainForm: React.FC<MainFormProps> = ({
           errors={errors}
           departments={departments}
           experienceLevels={experienceLevels}
-          onInputChange={handleInputChange}
-          onSelect={handleSelect}
+          onInputChange={onInputChange}
+          onSelect={onSelect}
         />
       </Box>
 
       <Box marginTop={2} flexDirection="column">
         <Text dimColor>导航说明:</Text>
-        <Text dimColor>• Enter: 确认并继续/提交表单</Text>
-        <Text dimColor>• ←/Backspace: 返回上一步进行修改</Text>
-        <Text dimColor>• Esc: 放弃当前操作并返回主菜单</Text>
+        <Text dimColor>• Enter: 继续/提交</Text>
+        <Text dimColor>• ←/Backspace: 返回上一步</Text>
+        <Text dimColor>• Esc: 返回主菜单</Text>
       </Box>
     </Box>
   )

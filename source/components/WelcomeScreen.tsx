@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box, Text } from 'ink'
 
-const WelcomeScreen: React.FC = () => {
+function WelcomeScreen(): JSX.Element {
   return (
     <Box flexDirection="column" padding={2} alignItems="center">
       <Box flexDirection="column" alignItems="center" marginBottom={2}>
         <Text color="cyan" bold>
-          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗
+          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗{' '}
         </Text>
         <Text color="blue" bold>
           ████╗ ██║██╔═══██╗██║ ██║██╔══██╗
@@ -24,12 +24,14 @@ const WelcomeScreen: React.FC = () => {
           ╚═╝ ╚═══╝ ╚═════╝ ╚═══╝ ╚═╝ ╚═╝
         </Text>
       </Box>
+
       <Text color="white" italic dimColor>
         Interactive User Registration Form
       </Text>
+
       <Box marginTop={2}>
         <Text color="gray" dimColor>
-          Press Enter to continue...
+          按任意键继续...
         </Text>
       </Box>
     </Box>

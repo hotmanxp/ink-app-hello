@@ -2,16 +2,16 @@ import React from 'react'
 import { Box, Text } from 'ink'
 import TextInput from 'ink-text-input'
 import SelectInput from 'ink-select-input'
-import { FormData, FormErrors, SelectItem } from '../types.js'
+import type { FormData, FormErrors, SelectItem } from '../types.js'
 
 interface FormFieldsProps {
-  step: number
-  formData: FormData
-  errors: FormErrors
-  departments: SelectItem[]
-  experienceLevels: SelectItem[]
-  onInputChange: (field: string, value: string) => void
-  onSelect: (field: string, item: SelectItem) => void
+  readonly step: number
+  readonly formData: Readonly<FormData>
+  readonly errors: Readonly<FormErrors>
+  readonly departments: readonly SelectItem[]
+  readonly experienceLevels: readonly SelectItem[]
+  readonly onInputChange: (field: string, value: string) => void
+  readonly onSelect: (field: string, item: SelectItem) => void
 }
 
 const FormFields: React.FC<FormFieldsProps> = ({
@@ -27,49 +27,46 @@ const FormFields: React.FC<FormFieldsProps> = ({
     case 0:
       return (
         <Box flexDirection="column">
-          <Text color="yellow">Enter your name:</Text>
+          <Text color="yellow">请输入您的姓名:</Text>
           <TextInput
             value={formData.name}
             onChange={(value: string) => onInputChange('name', value)}
-            placeholder="John Doe"
+            placeholder="张三"
           />
           {errors.name && <Text color="red">{errors.name}</Text>}
-          <Text dimColor>Press Enter to continue</Text>
         </Box>
       )
 
     case 1:
       return (
         <Box flexDirection="column">
-          <Text color="yellow">Enter your email:</Text>
+          <Text color="yellow">请输入您的邮箱:</Text>
           <TextInput
             value={formData.email}
             onChange={(value: string) => onInputChange('email', value)}
-            placeholder="john@example.com"
+            placeholder="zhangsan@example.com"
           />
           {errors.email && <Text color="red">{errors.email}</Text>}
-          <Text dimColor>Press Enter to continue</Text>
         </Box>
       )
 
     case 2:
       return (
         <Box flexDirection="column">
-          <Text color="yellow">Enter your age:</Text>
+          <Text color="yellow">请输入您的年龄:</Text>
           <TextInput
             value={formData.age}
             onChange={(value: string) => onInputChange('age', value)}
             placeholder="25"
           />
           {errors.age && <Text color="red">{errors.age}</Text>}
-          <Text dimColor>Press Enter to continue</Text>
         </Box>
       )
 
     case 3:
       return (
         <Box flexDirection="column">
-          <Text color="yellow">Select your department:</Text>
+          <Text color="yellow">请选择您的部门:</Text>
           <SelectInput
             items={departments}
             onSelect={(item: SelectItem) => onSelect('department', item)}
@@ -81,7 +78,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
     case 4:
       return (
         <Box flexDirection="column">
-          <Text color="yellow">Select your experience level:</Text>
+          <Text color="yellow">请选择您的经验级别:</Text>
           <SelectInput
             items={experienceLevels}
             onSelect={(item: SelectItem) => onSelect('experience', item)}
@@ -91,7 +88,17 @@ const FormFields: React.FC<FormFieldsProps> = ({
       )
 
     default:
-      return null
+      return (
+        <Box flexDirection="column">
+          <Text color="yellow">请输入您的姓名:</Text>
+          <TextInput
+            value={formData.name}
+            onChange={(value: string) => onInputChange('name', value)}
+            placeholder="张三"
+          />
+          {errors.name && <Text color="red">{errors.name}</Text>}
+        </Box>
+      )
   }
 }
 

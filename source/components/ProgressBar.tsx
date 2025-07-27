@@ -2,23 +2,23 @@ import React from 'react'
 import { Box, Text } from 'ink'
 
 interface ProgressBarProps {
-  step: number
-  totalSteps: number
+  readonly step: number
+  readonly totalSteps: number
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ step, totalSteps }) => {
-  const progress = ((step + 1) / totalSteps) * 100
-  const filledBlocks = Math.floor(progress / 2)
-  const emptyBlocks = 50 - filledBlocks < 0 ? 0 : 50 - filledBlocks
+  const progress = Math.min(step / totalSteps, 1)
+  const progressBarWidth = 20
+  const filledWidth = Math.round(progress * progressBarWidth)
+
+  const filledBar = '█'.repeat(filledWidth)
+  const emptyBar = '░'.repeat(progressBarWidth - filledWidth)
 
   return (
-    <Box flexDirection="column" marginBottom={1}>
-      <Text color="cyan">
-        Progress: {step + 1}/{totalSteps}
-      </Text>
+    <Box flexDirection="column">
       <Text>
-        <Text color="green">{'█'.repeat(filledBlocks)}</Text>
-        <Text color="gray">{'░'.repeat(emptyBlocks)}</Text>
+        进度: {filledBar}
+        <Text dimColor>{emptyBar}</Text> {Math.round(progress * 100)}%
       </Text>
     </Box>
   )
