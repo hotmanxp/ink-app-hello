@@ -6,7 +6,7 @@ function WelcomeScreen(): JSX.Element {
     <Box flexDirection="column" padding={2} alignItems="center">
       <Box flexDirection="column" alignItems="center" marginBottom={2}>
         <Text color="cyan" bold>
-          {'   ███╗   ██╗  ██████╗  ██╗   ██╗  █████╗   '}
+          {'  ███╗   ██╗  ██████╗  ██╗   ██╗  █████╗   '}
         </Text>
         <Text color="blue" bold>
           {'   ████╗  ██║  ██╔═══██╗  ██║   ██║  ██╔══██╗  '}
