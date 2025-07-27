@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Interactive User Management System</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="interactive-user-management-system">Interactive User Management System</h1>
+<p>一个基于命令行的交互式用户管理系统，使用 React 和 Ink 构建。</p>
+<h2 id="功能特性">功能特性</h2>
+<ul>
+<li>🎨 精美的终端用户界面</li>
+<li>✅ 表单验证和错误处理</li>
+<li>💾 用户数据持久化存储 (JSON文件)</li>
+<li>📋 用户列表查看和管理</li>
+<li>✏️ 用户信息编辑功能</li>
+<li>🗑️ 用户删除功能</li>
+<li>⌨️ 完整的键盘导航支持</li>
+<li>🔄 流畅的页面切换动画</li>
+</ul>
+<h2 id="界面预览">界面预览</h2>
+<p><img src="https://placehold.co/600x400/000000/FFFFFF?text=Main+Interface" alt="主界面">
+<em>主界面和菜单选项</em></p>
+<p><img src="https://placehold.co/600x400/000000/FFFFFF?text=User+Form" alt="用户表单">
+<em>用户信息填写表单</em></p>
+<p><img src="https://placehold.co/600x400/000000/FFFFFF?text=User+List" alt="用户列表">
+<em>用户列表和管理界面</em></p>
+<h2 id="安装">安装</h2>
+<pre><code class="language-bash">$ npm install --global my-ink-cli-01
+</code></pre>
+<h2 id="使用方法">使用方法</h2>
+<pre><code class="language-bash">$ my-ink-cli-01
+</code></pre>
+<p>运行命令后，您将看到一个交互式界面，可以通过以下方式操作：</p>
+<h3 id="导航控制">导航控制</h3>
+<ul>
+<li><strong>↑/↓ 箭头键</strong>: 在菜单选项间切换</li>
+<li><strong>Enter</strong>: 确认选择或提交表单</li>
+<li><strong>← / Backspace</strong>: 返回上一步</li>
+<li><strong>Tab / Shift+Tab</strong>: 在表单字段间切换</li>
+<li><strong>Esc</strong>: 返回主菜单或退出当前操作</li>
+<li><strong>Ctrl+C</strong>: 退出程序</li>
+</ul>
+<h3 id="功能说明">功能说明</h3>
+<ol>
+<li>
+<p><strong>填写新用户信息</strong></p>
+<ul>
+<li>按步骤填写用户信息</li>
+<li>包含姓名、邮箱、年龄、部门和经验级别</li>
+<li>实时验证输入数据</li>
+</ul>
+</li>
+<li>
+<p><strong>查看和编辑用户信息</strong></p>
+<ul>
+<li>浏览已有用户列表</li>
+<li>选择用户进行编辑或删除</li>
+<li>确认删除操作以防止误删</li>
+</ul>
+</li>
+</ol>
+<h2 id="技术架构">技术架构</h2>
+<h3 id="核心技术栈">核心技术栈</h3>
+<ul>
+<li><a href="https://reactjs.org/">React</a> - UI库</li>
+<li><a href="https://github.com/vadimdemedes/ink">Ink</a> - 终端渲染库</li>
+<li><a href="https://www.typescriptlang.org/">TypeScript</a> - 类型安全的JavaScript</li>
+<li><a href="https://github.com/jprichardson/node-fs-extra">fs-extra</a> - 文件系统操作</li>
+</ul>
+<h3 id="组件结构">组件结构</h3>
+<pre><code>App
+├── HomeScreen (首页和菜单)
+├── MainForm (主表单)
+│   ├── ProgressBar (进度条)
+│   └── FormFields (表单字段)
+└── User Management
+    ├── UserListScreen (用户列表)
+    └── UserEditScreen (用户编辑)
+</code></pre>
+<h3 id="数据持久化">数据持久化</h3>
+<p>用户数据存储在项目目录下的 <code>data/users.json</code> 文件中，采用 JSON 格式存储。</p>
+<h2 id="开发指南">开发指南</h2>
+<h3 id="本地开发">本地开发</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># 克隆项目</span>
+git <span class="hljs-built_in">clone</span> &lt;repository-url&gt;
+<span class="hljs-built_in">cd</span> my-ink-cli-01
+
+<span class="hljs-comment"># 安装依赖</span>
+npm install
+
+<span class="hljs-comment"># 构建项目</span>
+npm run build
+
+<span class="hljs-comment"># 运行开发版本</span>
+npm run dev
+</code></pre>
+<h3 id="项目结构">项目结构</h3>
+<pre><code>my-ink-cli-01/
+├── source/           # 源代码目录
+│   ├── components/   # React组件
+│   ├── services/     # 数据服务
+│   ├── app.tsx       # 主应用组件
+│   └── cli.tsx       # CLI入口
+├── data/             # 数据存储目录
+├── dist/             # 编译输出目录
+└── README.md         # 项目文档
+</code></pre>
+<h3 id="组件说明">组件说明</h3>
+<ul>
+<li><strong>HomeScreen</strong>: 应用首页和主菜单</li>
+<li><strong>MainForm</strong>: 用户信息填写表单</li>
+<li><strong>ProgressBar</strong>: 表单填写进度指示器</li>
+<li><strong>FormFields</strong>: 表单字段组件</li>
+<li><strong>UserListScreen</strong>: 用户列表和管理界面</li>
+<li><strong>UserEditScreen</strong>: 用户信息编辑界面</li>
+</ul>
+<h2 id="贡献">贡献</h2>
+<p>欢迎提交 Issue 和 Pull Request 来改进这个项目。</p>
+<h2 id="许可证">许可证</h2>
+<p>MIT © 2025</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
