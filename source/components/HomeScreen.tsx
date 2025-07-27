@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text } from 'ink'
+import { Box, Text, useInput } from 'ink'
 import SelectInput from 'ink-select-input'
 import type { Route } from '../types.js'
 
@@ -26,6 +26,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
       onRouteChange(item.value)
     }
   }
+
+  // 添加ESC键监听功能
+  useInput((input, key) => {
+    if (key.escape) {
+      process.exit(0)
+    }
+  })
 
   return (
     <Box flexDirection="column" padding={2} alignItems="center">
@@ -70,6 +77,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
         <Text dimColor>导航说明:</Text>
         <Text dimColor>• ↑/↓: 选择选项</Text>
         <Text dimColor>• Enter: 确认选择</Text>
+        <Text dimColor>• Esc: 退出程序</Text>
         <Text dimColor>• Ctrl+C: 退出程序</Text>
       </Box>
     </Box>

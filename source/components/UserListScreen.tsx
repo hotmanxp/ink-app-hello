@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Text } from 'ink'
+import { Box, Text, useInput } from 'ink'
 import SelectInput from 'ink-select-input'
 import type { User, Route } from '../types.js'
 import { readUsers, deleteUser } from '../services/dataService.js'
@@ -33,6 +33,13 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
 
     void fetchUsers()
   }, [])
+
+  // 添加ESC键监听功能
+  useInput((input, key) => {
+    if (key.escape) {
+      onRouteChange('home')
+    }
+  })
 
   const handleSelectUser = (item: UserMenuItem) => {
     // 处理删除确认
@@ -208,6 +215,7 @@ const UserListScreen: React.FC<UserListScreenProps> = ({ onRouteChange }) => {
         <Text dimColor>导航说明:</Text>
         <Text dimColor>• ↑/↓: 选择选项</Text>
         <Text dimColor>• Enter: 确认选择</Text>
+        <Text dimColor>• Esc: 返回主菜单</Text>
         <Text dimColor>• Ctrl+C: 退出程序</Text>
       </Box>
     </Box>

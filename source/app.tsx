@@ -210,6 +210,12 @@ export default function App() {
         handleRouteChange('home')
       }
     }
+
+    // 在所有页面支持ESC键返回主菜单（除了已经在主菜单时）
+    if (key.escape && route !== 'home') {
+      handleRouteChange('home')
+    }
+
     // 仅当处于表单页面时处理键盘事件，其他页面(如edit-user)让子组件自行处理
     if (route !== 'form') {
       return
