@@ -121,6 +121,20 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     setFocusedField(fields[prevIndex] as any)
   }
 
+  // Add missing handleNext function
+  const handleNext = () => {
+    if (focusedField) {
+      moveToNextField(focusedField);
+    }
+  };
+
+  // Add missing handlePrevious function
+  const handlePrevious = () => {
+    if (focusedField) {
+      moveToPrevField(focusedField);
+    }
+  };
+
   const handleSubmit = async () => {
     // 验证所有字段
     const newErrors: FormErrors = {}
@@ -216,17 +230,17 @@ const UserEditScreen: React.FC<UserEditScreenProps> = ({ user, onRouteChange }) 
     }
     
     // 处理表单提交
-    if (key.return && currentField) {
-      const error = validateField(currentField, formData[currentField])
+    if (key.return && focusedField) {
+      const error = validateField(focusedField, formData[focusedField])
       if (!error) {
         handleNext()
       } else {
-        setErrors(prev => ({ ...prev, [currentField]: error }))
+        setErrors(prev => ({ ...prev, [focusedField]: error }))
       }
     }
     
     // 处理返回上一步
-    if (key.backspace && currentField) {
+    if (key.backspace && focusedField) {
       handlePrevious()
     }
   })
