@@ -38,22 +38,22 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
     <Box flexDirection="column" padding={2} alignItems="center">
       <Box flexDirection="column" alignItems="center" marginBottom={2}>
         <Text color="cyan" bold>
-          ███╗ ██╗ ██████╗ ██╗ ██╗ █████╗{' '}
+          ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗{' '}
         </Text>
         <Text color="blue" bold>
-          ████╗ ██║██╔═══██╗██║ ██║██╔══██╗
+          ████╗  ██║██╔═══██╗██║   ██║██╔══██╗
         </Text>
         <Text color="magenta" bold>
-          ██╔██╗ ██║██║ ██║██║ ██║███████║
+          ██╔██╗ ██║██║   ██║██║   ██║███████║
         </Text>
         <Text color="green" bold>
-          ██║╚██╗██║██║ ██║╚██╗ ██╔╝██╔══██║
+          ██║╚██╗██║██║   ██║╚██╗ ██╔╝██╔══██║
         </Text>
         <Text color="yellow" bold>
-          ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║ ██║
+          ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║
         </Text>
         <Text color="red" bold>
-          ╚═╝ ╚═══╝ ╚═════╝ ╚═══╝ ╚═╝ ╚═╝
+          ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝
         </Text>
       </Box>
 
@@ -65,10 +65,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onRouteChange }) => {
         <Text bold color="cyan">
           用户管理系统
         </Text>
-      </Box>
-
-      <Box marginBottom={2}>
-        <Text dimColor>请选择操作:</Text>
       </Box>
 
       <SelectInput items={menuItems} onSelect={handleSelect} />
